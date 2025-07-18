@@ -1,30 +1,27 @@
-from flask import Flask, render_template, request
+import streamlit as st
 
-app = Flask(__name__)
+st.set_page_config(page_title="Konversi Berat", layout="centered")
 
-# Faktor konversi ke kilogram
+st.title("⚖️ Konversi Berat")
+st.markdown("Konversi antara satuan berat: kilogram, gram, pound, dan ounce.")
+
+# Dictionary konversi ke kilogram
 conversion_factors = {
-    'kg': 1,
-    'g': 0.001,
-    'lb': 0.453592,
-    'oz': 0.0283495
+    'Kilogram (kg)': 1,
+    'Gram (g)': 0.001,
+    'Pound (lb)': 0.453592,
+    'Ounce (oz)': 0.0283495
 }
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    result = None
-    if request.method == 'POST':
-        weight = float(request.form['weight'])
-        from_unit = request.form['from_unit']
-        to_unit = request.form['to_unit']
+# Input dari pengguna
+weight = st.number_input("Masukkan berat", min_value=0.0, format="%.4f")
 
-        # Konversi ke kilogram terlebih dahulu, lalu ke satuan tujuan
-        weight_in_kg = weight * conversion_factors[from_unit]
-        converted = weight_in_kg / conversion_factors[to_unit]
+from_unit = st.selectbox("Dari satuan", list(conversion_factors.keys()))
+to_unit = st.selectbox("Ke satuan", list(conversion_factors.keys()))
 
-        result = f"{weight} {from_unit} = {round(converted, 4)} {to_unit}"
-
-    return render_template('index.html', result=result)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if st.button("Konversi"):
+    # Konversi ke kilogram dulu
+    weight_kg = weight * conversion_factors[from_unit]
+    # Lalu ke satuan tujuan
+    converted = weight_kg / conversion_factors[to_unit]
+    st.success(f"{weight} {from_unit} = {round(converted, 4)} {to_unit}")
