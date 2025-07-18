@@ -1,10 +1,10 @@
-# Web Konversi Berat ⚖️
+# Streamlit Weight Converter ⚖️
 
-Aplikasi web sederhana menggunakan Flask untuk mengonversi berat dari satu satuan ke satuan lainnya.
+Aplikasi web sederhana untuk konversi berat yang dibangun menggunakan Streamlit.
 
-## 🔧 Fitur
+## 💡 Fitur
 
-- Konversi antara:
+- Konversi antara satuan berat:
   - Kilogram (kg)
   - Gram (g)
   - Pound (lb)
@@ -12,8 +12,8 @@ Aplikasi web sederhana menggunakan Flask untuk mengonversi berat dari satu satua
 
 ## 🚀 Cara Menjalankan
 
-1. Clone repositori:
+1. Clone repo:
 
 ```bash
-git clone https://github.com/yourusername/weight-converter.git
-cd weight-converter
+git clone https://github.com/yourusername/weight-converter-streamlit.git
+cd weight-converter-streamlit
